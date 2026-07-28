@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Fishing Adventure</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <main class="start-screen">
+    <h1>Fishing Adventure</h1>
+
+    <button id="start-btn">Start Game</button>
+  </main>
+
+
+  <main class="game-screen">
+  <!-- Top UI Bar -->
+  <div class="top-bar">
+    <div class="ui-item">⭐ Score: <span id="score">0</span></div>
+    <div class="ui-item">🪙 Coins: <span id="coins">0</span></div>
+    <div class="ui-item">🐟 Caught: <span id="caught">0</span></div>
+    <button id="pause-btn">⏸ Pause</button>
+  </div>
+
+  <!-- Ocean area where fish swim -->
+  <div class="ocean" id="ocean">
+    <!-- Fish will be added here by JavaScript -->
+  </div>
+
+  <!-- Cannon (player) at the bottom -->
+  <div class="cannon-container">
+    <img src="assets/images/cannon1.png" alt="Cannon" id="cannon" class="cannon">
+  </div>
+</main>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>
