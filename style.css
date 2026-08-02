@@ -1,291 +1,293 @@
-/* =========================
-   RESET
-========================= */
-
+/* ========================= RESET ========================= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-
-/* =========================
-   BODY
-========================= */
-
 body {
-  font-family: Arial, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   overflow: hidden;
+  background: #0b3d5c;
 }
 
-
-/* =========================
-   START SCREEN
-========================= */
-
+/* ========================= START SCREEN ========================= */
 .start-screen {
   position: fixed;
-
   inset: 0;
-
   z-index: 100;
-
-  width: 100vw;
-  height: 100vh;
-
+  background-color: #0b3d5c;
   background-image: url("assets/images/startbg.jpg");
-
   background-size: cover;
-
   background-position: center;
-
-  background-repeat: no-repeat;
-
   display: flex;
-
   justify-content: center;
-
   align-items: center;
 }
-
 
 .menu-content {
   display: flex;
-
   flex-direction: column;
-
   align-items: center;
-
-  gap: 20px;
+  gap: 18px;
+  padding: 30px;
 }
-
 
 .menu-content h1 {
   font-size: 60px;
-
-  color: white;
-
-  text-shadow:
-    3px 3px 5px black;
+  color: #fff;
+  text-shadow: 3px 3px 6px #000;
 }
-
 
 .menu-content p {
-  font-size: 22px;
+  font-size: 20px;
+  color: #fff;
+  text-shadow: 2px 2px 4px #000;
+}
 
-  color: white;
+/* هذا الكود place for .rules */
+.rules {
+  list-style: none;
+  color: #fff;
+  font-size: 17px;
+  line-height: 1.9;
+  text-shadow: 2px 2px 4px #000;
+  /* تم إزالة الخلفية السوداء واللب organzing */
+}
 
-  text-shadow:
-    2px 2px 4px black;
+.rules li {
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
 
-/* =========================
-   BUTTONS
-========================= */
-
+/* ========================= BUTTONS ========================= */
 button {
   padding: 15px 40px;
-
   border: none;
-
   border-radius: 10px;
-
   font-size: 20px;
-
   font-weight: bold;
-
   cursor: pointer;
-
-  background-color: white;
-
+  background-color: #fff;
   color: #166b8f;
+  transition: transform .12s ease;
 }
-
 
 button:hover {
   transform: scale(1.08);
 }
 
-
-/* =========================
-   GAME SCREEN
-========================= */
-
+/* ========================= GAME SCREEN ========================= */
 .game-screen {
   display: none;
-
   position: fixed;
-
   inset: 0;
-
-  width: 100vw;
-
-  height: 100vh;
-
-  background-image:
-    url("assets/images/game_bg_2_hd.jpg");
-
+  background-color: #0b4a6f;
+  background-image: url("assets/images/game_bg_2_hd.jpg");
   background-size: cover;
-
   background-position: center;
-
-  background-repeat: no-repeat;
 }
 
-
-/* =========================
-   GAME INFO
-========================= */
-
+/* ========================= HUD ========================= */
+/* ========================= HUD STYLE ========================= */
 .game-info {
   position: absolute;
-
   top: 20px;
-
   left: 50%;
-
   transform: translateX(-50%);
-
   display: flex;
-
-  gap: 15px;
-
+  gap: 25px;
   z-index: 50;
 }
 
-
 .info-box {
-  min-width: 120px;
-
-  padding: 10px 20px;
-
-  background-color:
-    rgba(255, 255, 255, 0.9);
-
-  border-radius: 10px;
-
+  min-width: 140px;
+  padding: 20px 30px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px); /* Effect glassmaking */
+  border-radius: 25px;
   text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
 }
 
+.info-box:hover {
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.7);
+  transform: translateY(-5px);
+}
 
 .info-box span {
   display: block;
-
   font-size: 14px;
+  color: #88c2d6; /* لون خفيف للعناوين */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
 }
-
 
 .info-box strong {
   display: block;
-
-  margin-top: 5px;
-
-  font-size: 22px;
-
+  font-size: 28px;
   color: #166b8f;
+  font-weight: 900;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
-
-
-/* =========================
-   GAME AREA
-========================= */
-
+/* ========================= GAME AREA ========================= */
 .game-area {
   position: absolute;
-
   inset: 0;
-
-  width: 100%;
-
-  height: 100%;
-
   overflow: hidden;
+  cursor: crosshair;
 }
 
+/* every child is click-through so the area itself gets the click */
+.game-area > * {
+  pointer-events: none;
+}
 
-/* =========================
-   FISH
-========================= */
+/* ========================= ROD ========================= */
+/* ========================= ROD ========================= */
+#rod {
+  position: absolute;
+  z-index: 30;
+  will-change: transform;
+}
 
+#rod-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+#rod-fallback {
+  display: none;
+  font-size: 64px;
+  line-height: 1;
+  text-align: center;
+}
+
+/* نقطة المعايرة الحمراء */
+#anchor-dot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  margin: -5px 0 0 -5px;
+  border-radius: 50%;
+  background: #ff2d2d;
+  box-shadow: 0 0 8px #ff2d2d;
+  z-index: 99;
+  display: none;
+}
+
+/* ========================= LINE LAYER ========================= */
+#line-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 28;
+}
+
+#fish-line {
+  stroke: #ffffff;
+  stroke-width: 2;
+  visibility: hidden;
+}
+
+#aim-line {
+  stroke: rgba(255, 255, 255, .55);
+  stroke-width: 3;
+  stroke-dasharray: 8 8;
+  stroke-linecap: round;
+  visibility: hidden;
+}
+
+/* ========================= HOOK ========================= */
+#hook {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 30px;
+  line-height: 1;
+  z-index: 32;
+  visibility: hidden;
+  filter: drop-shadow(0 0 3px rgba(0, 0, 0, .6));
+}
+
+/* ========================= FISH ========================= */
 .fish {
   position: absolute;
-
   width: 100px;
-
   height: 100px;
-
-  cursor: pointer;
-
   z-index: 20;
-
-  user-select: none;
-
-  transition: transform 0.2s;
 }
 
-
-.fish:hover {
-  transform: scale(1.1);
+.fish.bad {
+  filter: drop-shadow(0 0 8px #ff2d2d) hue-rotate(-20deg) saturate(1.6);
+  animation: badPulse 1s ease-in-out infinite;
 }
 
+@keyframes badPulse {
+  0%, 100% { filter: drop-shadow(0 0 6px #ff2d2d) saturate(1.5); }
+  50%      { filter: drop-shadow(0 0 16px #ff2d2d) saturate(2); }
+}
 
-/* =========================
-   GAME OVER
-========================= */
+/* ========================= POPUP FEEDBACK ========================= */
+.popup {
+  position: absolute;
+  z-index: 60;
+  font-size: 30px;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px #000;
+  transform: translate(-50%, -50%);
+  animation: floatUp .9s ease-out forwards;
+}
 
+.popup.good { color: #6cff7a; }
+.popup.bad  { color: #ff5f5f; }
+
+@keyframes floatUp {
+  0%   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -160%) scale(1.4); }
+}
+
+/* ========================= GAME OVER ========================= */
 .game-over {
   display: none;
-
   position: absolute;
-
   top: 50%;
-
   left: 50%;
-
   transform: translate(-50%, -50%);
-
   min-width: 350px;
-
   padding: 40px;
-
-  background-color:
-    rgba(255, 255, 255, 0.95);
-
+  background-color: rgba(255, 255, 255, .95);
   border-radius: 20px;
-
   text-align: center;
-
   z-index: 200;
 }
 
-
 .game-over h2 {
   font-size: 40px;
-
   margin-bottom: 20px;
-
   color: #166b8f;
 }
-
 
 .game-over p {
   font-size: 20px;
-
   margin: 10px 0;
 }
 
-
 #final-score {
   display: block;
-
   font-size: 60px;
-
   color: #166b8f;
-
   margin: 10px;
 }
-
 
 #restart-btn {
   margin-top: 20px;
