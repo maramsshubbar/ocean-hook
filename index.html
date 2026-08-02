@@ -11,32 +11,78 @@
 
 <body>
 
-  <main class="start-screen">
-    <h1>Fishing Adventure</h1>
+  <!-- START SCREEN -->
 
-    <button id="start-btn">Start Game</button>
-  </main>
+  <div id="start-screen" class="start-screen">
 
+    <div class="menu-content">
 
-  <main class="game-screen">
-  <!-- Top UI Bar -->
-  <div class="top-bar">
-    <div class="ui-item">⭐ Score: <span id="score">0</span></div>
-    <div class="ui-item">🪙 Coins: <span id="coins">0</span></div>
-    <div class="ui-item">🐟 Caught: <span id="caught">0</span></div>
-    <button id="pause-btn">⏸ Pause</button>
+      <h1>Fishing Adventure</h1>
+
+      <p>Catch the fish!</p>
+
+      <button id="start-btn">
+        Start Game
+      </button>
+
+    </div>
+
   </div>
 
-  <!-- Ocean area where fish swim -->
-  <div class="ocean" id="ocean">
-    <!-- Fish will be added here by JavaScript -->
-  </div>
 
-  <!-- Cannon (player) at the bottom -->
-  <div class="cannon-container">
-    <img src="assets/images/cannon1.png" alt="Cannon" id="cannon" class="cannon">
+  <!-- GAME SCREEN -->
+
+  <div id="game-screen" class="game-screen">
+
+    <!-- GAME INFO -->
+
+    <div class="game-info">
+
+      <div class="info-box">
+        <span>Score</span>
+        <strong id="score">0</strong>
+      </div>
+
+      <div class="info-box">
+        <span>Fish Caught</span>
+        <strong id="fish-caught">0</strong>
+      </div>
+
+      <div class="info-box">
+        <span>Time</span>
+        <strong id="timer">60</strong>
+      </div>
+
+    </div>
+
+
+    <!-- FISH AREA -->
+
+    <div id="game-area" class="game-area"></div>
+
+
+    <!-- GAME OVER -->
+
+    <div id="game-over" class="game-over">
+
+      <h2>Game Over!</h2>
+
+      <p>Your Score</p>
+
+      <strong id="final-score">0</strong>
+
+      <p>
+        Fish Caught:
+        <span id="final-fish">0</span>
+      </p>
+
+      <button id="restart-btn">
+        Play Again
+      </button>
+
+    </div>
+
   </div>
-</main>
 
 
   <script src="script.js"></script>

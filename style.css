@@ -1,71 +1,292 @@
+/* =========================
+   RESET
+========================= */
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+
+/* =========================
+   BODY
+========================= */
+
 body {
   font-family: Arial, sans-serif;
-  min-height: 100vh;
+  overflow: hidden;
 }
 
+
+/* =========================
+   START SCREEN
+========================= */
+
 .start-screen {
-  min-height: 100vh;
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 100;
+
+  width: 100vw;
+  height: 100vh;
 
   background-image: url("assets/images/startbg.jpg");
+
   background-size: cover;
+
   background-position: center;
+
   background-repeat: no-repeat;
 
   display: flex;
-  flex-direction: column;
+
   justify-content: center;
+
+  align-items: center;
+}
+
+
+.menu-content {
+  display: flex;
+
+  flex-direction: column;
+
   align-items: center;
 
-  gap: 30px;
+  gap: 20px;
 }
 
-.start-screen h1 {
-  color: white;
+
+.menu-content h1 {
   font-size: 60px;
-  text-shadow: 3px 3px 5px black;
+
+  color: white;
+
+  text-shadow:
+    3px 3px 5px black;
 }
 
-#start-btn {
-  padding: 15px 50px;
-  font-size: 24px;
-  font-weight: bold;
 
-  background-color: white;
-  color: #1b5e20;
+.menu-content p {
+  font-size: 22px;
+
+  color: white;
+
+  text-shadow:
+    2px 2px 4px black;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+button {
+  padding: 15px 40px;
 
   border: none;
+
   border-radius: 10px;
+
+  font-size: 20px;
+
+  font-weight: bold;
 
   cursor: pointer;
 
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+  background-color: white;
+
+  color: #166b8f;
 }
 
-#start-btn:hover {
-  background-color: #1b5e20;
-  color: white;
-  transform: scale(1.05);
+
+button:hover {
+  transform: scale(1.08);
 }
 
-#start-btn:active {
-  transform: scale(0.95);
-}
 
+/* =========================
+   GAME SCREEN
+========================= */
 
 .game-screen {
   display: none;
 
-  min-height: 100vh;
+  position: fixed;
 
-  background-image: url("assets/images/game_bg_2_hd.jpg");
+  inset: 0;
+
+  width: 100vw;
+
+  height: 100vh;
+
+  background-image:
+    url("assets/images/game_bg_2_hd.jpg");
+
   background-size: cover;
+
   background-position: center;
 
+  background-repeat: no-repeat;
+}
+
+
+/* =========================
+   GAME INFO
+========================= */
+
+.game-info {
+  position: absolute;
+
+  top: 20px;
+
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  display: flex;
+
+  gap: 15px;
+
+  z-index: 50;
+}
+
+
+.info-box {
+  min-width: 120px;
+
+  padding: 10px 20px;
+
+  background-color:
+    rgba(255, 255, 255, 0.9);
+
+  border-radius: 10px;
+
   text-align: center;
+}
+
+
+.info-box span {
+  display: block;
+
+  font-size: 14px;
+}
+
+
+.info-box strong {
+  display: block;
+
+  margin-top: 5px;
+
+  font-size: 22px;
+
+  color: #166b8f;
+}
+
+
+/* =========================
+   GAME AREA
+========================= */
+
+.game-area {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+
+  height: 100%;
+
+  overflow: hidden;
+}
+
+
+/* =========================
+   FISH
+========================= */
+
+.fish {
+  position: absolute;
+
+  width: 100px;
+
+  height: 100px;
+
+  cursor: pointer;
+
+  z-index: 20;
+
+  user-select: none;
+
+  transition: transform 0.2s;
+}
+
+
+.fish:hover {
+  transform: scale(1.1);
+}
+
+
+/* =========================
+   GAME OVER
+========================= */
+
+.game-over {
+  display: none;
+
+  position: absolute;
+
+  top: 50%;
+
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  min-width: 350px;
+
+  padding: 40px;
+
+  background-color:
+    rgba(255, 255, 255, 0.95);
+
+  border-radius: 20px;
+
+  text-align: center;
+
+  z-index: 200;
+}
+
+
+.game-over h2 {
+  font-size: 40px;
+
+  margin-bottom: 20px;
+
+  color: #166b8f;
+}
+
+
+.game-over p {
+  font-size: 20px;
+
+  margin: 10px 0;
+}
+
+
+#final-score {
+  display: block;
+
+  font-size: 60px;
+
+  color: #166b8f;
+
+  margin: 10px;
+}
+
+
+#restart-btn {
+  margin-top: 20px;
 }

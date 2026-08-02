@@ -1,108 +1,773 @@
-// ===== ELEMENTS =====
+// =========================
+// GET HTML ELEMENTS
+// =========================
+
+const startScreen = document.querySelector('#start-screen');
+const gameScreen = document.querySelector('#game-screen');
+
 const startButton = document.querySelector('#start-btn');
-const startScreen = document.querySelector('.start-screen');
-const gameScreen = document.querySelector('.game-screen');
-const ocean = document.querySelector('#ocean');
-const scoreEl = document.querySelector('#score');
-const coinsEl = document.querySelector('#coins');
-const caughtEl = document.querySelector('#caught');
+const restartButton = document.querySelector('#restart-btn');
 
-// ===== GAME STATE =====
+const gameArea = document.querySelector('#game-area');
+
+const scoreDisplay = document.querySelector('#score');
+const fishCaughtDisplay = document.querySelector('#fish-caught');
+const timerDisplay = document.querySelector('#timer');
+
+const gameOverScreen = document.querySelector('#game-over');
+
+const finalScoreDisplay = document.querySelector('#final-score');
+const finalFishDisplay = document.querySelector('#final-fish');
+
+
+// =========================
+// GAME VARIABLES
+// =========================
+
 let score = 0;
-let coins = 0;
-let caught = 0;
-let fishSpawnInterval;
+let fishCaught = 0;
+let timeLeft = 60;
 
-// ===== FISH DATA =====
-const fishTypes = [
-  { img: 'fish1.png', points: 10, coins: 2, speed: 3 },
-  { img: 'fish2.png', points: 15, coins: 3, speed: 4 },
-  { img: 'fish3.png', points: 20, coins: 5, speed: 5 },
-  { img: 'fish4.png', points: 25, coins: 6, speed: 3 },
-  { img: 'fish5.png', points: 30, coins: 8, speed: 4 },
-  { img: 'fish6.png', points: 50, coins: 10, speed: 6 },
-];
+let timerInterval;
+let fishInterval;
 
-// ===== START GAME =====
-startButton.addEventListener('click', function () {
-  startScreen.style.display = 'none';
-  gameScreen.style.display = 'block';
-  startGame();
-});
+let gameRunning = false;
 
-// ===== GAME LOGIC =====
-function startGame() {
-  score = 0;
-  coins = 0;
-  caught = 0;
-  updateUI();
 
-  // Spawn a new fish every 1.5 seconds
-  fishSpawnInterval = setInterval(spawnFish, 1500);
-}
+// =========================
+// FISH SPRITE SHEETS
+// =========================
 
-function spawnFish() {
-  // Pick a random fish type
-  const type = fishTypes[Math.floor(Math.random() * fishTypes.length)];
+const fishImages = [
 
-  // Create the fish element
-  const fish = document.createElement('img');
-  fish.src = `assets/images/${type.img}`;
-  fish.classList.add('fish');
+  {
+    file: 'fish1.png',
+    frames: 8
+  },
 
-  // Random vertical position (avoid top bar and cannon)
-  const topPos = 80 + Math.random() * (window.innerHeight - 250);
-  fish.style.top = `${topPos}px`;
+  {
+    file: 'fish2.png',
+    frames: 8
+  },
 
-  // Random direction (left → right OR right → left)
-  const goingRight = Math.random() > 0.5;
-  let posX = goingRight ? -100 : window.innerWidth + 100;
-  fish.style.left = `${posX}px`;
+  {
+    file: 'fish3.png',
+    frames: 8
+  },
 
-  // Flip fish if going left
-  if (!goingRight) {
-    fish.style.transform = 'scaleX(-1)';
+  {
+    file: 'fish4.png',
+    frames: 8
+  },
+
+  {
+    file: 'fish5.png',
+    frames: 8
+  },
+
+  {
+    file: 'fish6.png',
+    frames: 12
+  },
+
+  {
+    file: 'fish7.png',
+    frames: 10
+  },
+
+  {
+    file: 'fish8.png',
+    frames: 12
+  },
+
+  {
+    file: 'fish9.png',
+    frames: 12
+  },
+
+  {
+    file: 'fish10.png',
+    frames: 10
   }
 
-  ocean.appendChild(fish);
+];
 
-  // Click to catch the fish
-  fish.addEventListener('click', function () {
-    catchFish(fish, type);
-  });
 
-  // Move fish across the screen
-  const moveInterval = setInterval(() => {
-    posX += goingRight ? type.speed : -type.speed;
-    fish.style.left = `${posX}px`;
+// =========================
+// START BUTTON
+// =========================
 
-    // Remove fish if it goes off screen
-    if (posX > window.innerWidth + 200 || posX < -200) {
-      clearInterval(moveInterval);
-      fish.remove();
+startButton.addEventListener(
+  'click',
+  startGame
+);
+
+
+// =========================
+// RESTART BUTTON
+// =========================
+
+restartButton.addEventListener(
+  'click',
+  startGame
+);
+
+
+// =========================
+// START GAME
+// =========================
+
+function startGame() {
+
+  // Reset game
+
+  score = 0;
+
+  fishCaught = 0;
+
+  timeLeft = 60;
+
+  gameRunning = true;
+
+
+  // Update information
+
+  scoreDisplay.textContent =
+    score;
+
+  fishCaughtDisplay.textContent =
+    fishCaught;
+
+  timerDisplay.textContent =
+    timeLeft;
+
+
+  // Change screens
+
+  startScreen.style.display =
+    'none';
+
+  gameScreen.style.display =
+    'block';
+
+  gameOverScreen.style.display =
+    'none';
+
+
+  // Remove old fish
+
+  gameArea.innerHTML =
+    '';
+
+
+  // Stop old timers
+
+  clearInterval(
+    timerInterval
+  );
+
+  clearInterval(
+    fishInterval
+  );
+
+
+  // Create first fish
+
+  createFish();
+
+
+  // Create new fish
+
+  fishInterval =
+    setInterval(
+      createFish,
+      1500
+    );
+
+
+  // Start timer
+
+  startTimer();
+
+}
+
+
+// =========================
+// CREATE FISH
+// =========================
+
+function createFish() {
+
+  if (!gameRunning) {
+
+    return;
+
+  }
+
+
+  // Create canvas
+
+  const fish =
+    document.createElement(
+      'canvas'
+    );
+
+
+  // Canvas size
+
+  fish.width =
+    100;
+
+  fish.height =
+    100;
+
+
+  // Add CSS class
+
+  fish.classList.add(
+    'fish'
+  );
+
+
+  // Choose random fish
+
+  const randomIndex =
+    Math.floor(
+      Math.random() *
+      fishImages.length
+    );
+
+
+  const selectedFish =
+    fishImages[randomIndex];
+
+
+  // Create image
+
+  const image =
+    new Image();
+
+
+  // Set image source
+
+  image.src =
+    `assets/images/${selectedFish.file}`;
+
+
+  // Wait for image to load
+
+  image.onload =
+    function() {
+
+      // Add fish to game
+
+      gameArea.appendChild(
+        fish
+      );
+
+
+      // Animate fish
+
+      animateFish(
+        fish,
+        image,
+        selectedFish.frames
+      );
+
+
+      // Move fish
+
+      moveFish(
+        fish
+      );
+
+    };
+
+}
+
+
+// =========================
+// ANIMATE FISH
+// =========================
+
+function animateFish(
+  fish,
+  image,
+  frameCount
+) {
+
+  const ctx =
+    fish.getContext(
+      '2d'
+    );
+
+
+  // Calculate the height
+  // of ONE frame
+
+  const frameHeight =
+    image.height /
+    frameCount;
+
+
+  // Current animation frame
+
+  let currentFrame =
+    0;
+
+
+  // Animation function
+
+  function changeFrame() {
+
+    // Stop if fish was caught
+
+    if (
+      !fish.isConnected
+    ) {
+
+      return;
+
     }
-  }, 30);
 
-  // Save interval on the element so we can clear it on catch
-  fish.dataset.interval = moveInterval;
+
+    // Stop when game ends
+
+    if (
+      !gameRunning
+    ) {
+
+      return;
+
+    }
+
+
+    // Clear canvas
+
+    ctx.clearRect(
+      0,
+      0,
+      fish.width,
+      fish.height
+    );
+
+
+    // Draw ONLY ONE frame
+
+    ctx.drawImage(
+
+      image,
+
+      0,
+
+      currentFrame *
+      frameHeight,
+
+      image.width,
+
+      frameHeight,
+
+      0,
+
+      0,
+
+      fish.width,
+
+      fish.height
+
+    );
+
+
+    // Go to next frame
+
+    currentFrame++;
+
+
+    // Start again from frame 1
+
+    if (
+      currentFrame >=
+      frameCount
+    ) {
+
+      currentFrame =
+        0;
+
+    }
+
+
+    // Change frame
+
+    setTimeout(
+      changeFrame,
+      100
+    );
+
+  }
+
+
+  // Start animation
+
+  changeFrame();
+
 }
 
-function catchFish(fish, type) {
-  score += type.points;
-  coins += type.coins;
-  caught += 1;
-  updateUI();
 
-  // Simple catch animation
-  fish.style.transition = 'transform 0.3s, opacity 0.3s';
-  fish.style.transform = 'scale(0)';
-  fish.style.opacity = '0';
+// =========================
+// MOVE FISH
+// =========================
 
-  setTimeout(() => fish.remove(), 300);
+function moveFish(
+  fish
+) {
+
+  const fishSize =
+    100;
+
+
+  // Random starting position
+
+  let x =
+    Math.random() *
+    (
+      window.innerWidth -
+      fishSize
+    );
+
+
+  let y =
+    100 +
+    Math.random() *
+    (
+      window.innerHeight -
+      fishSize -
+      100
+    );
+
+
+  // Random horizontal speed
+
+  let speedX =
+    Math.random() *
+    2 +
+    1;
+
+
+  // Random vertical speed
+
+  let speedY =
+    Math.random() *
+    1 +
+    0.5;
+
+
+  // Random horizontal direction
+
+  if (
+    Math.random() <
+    0.5
+  ) {
+
+    speedX =
+      -speedX;
+
+  }
+
+
+  // Random vertical direction
+
+  if (
+    Math.random() <
+    0.5
+  ) {
+
+    speedY =
+      -speedY;
+
+  }
+
+
+  // Set starting position
+
+  fish.style.left =
+    `${x}px`;
+
+  fish.style.top =
+    `${y}px`;
+
+
+  // Movement function
+
+  function move() {
+
+    // Stop if fish was caught
+
+    if (
+      !fish.isConnected
+    ) {
+
+      return;
+
+    }
+
+
+    // Stop when game ends
+
+    if (
+      !gameRunning
+    ) {
+
+      return;
+
+    }
+
+
+    // Move fish
+
+    x +=
+      speedX;
+
+    y +=
+      speedY;
+
+
+    // =========================
+    // LEFT WALL
+    // =========================
+
+    if (
+      x <= 0
+    ) {
+
+      x = 0;
+
+      speedX =
+        Math.abs(
+          speedX
+        );
+
+    }
+
+
+    // =========================
+    // RIGHT WALL
+    // =========================
+
+    if (
+      x >=
+      window.innerWidth -
+      fishSize
+    ) {
+
+      x =
+        window.innerWidth -
+        fishSize;
+
+      speedX =
+        -Math.abs(
+          speedX
+        );
+
+    }
+
+
+    // =========================
+    // TOP WALL
+    // =========================
+
+    if (
+      y <= 100
+    ) {
+
+      y = 100;
+
+      speedY =
+        Math.abs(
+          speedY
+        );
+
+    }
+
+
+    // =========================
+    // BOTTOM WALL
+    // =========================
+
+    if (
+      y >=
+      window.innerHeight -
+      fishSize
+    ) {
+
+      y =
+        window.innerHeight -
+        fishSize;
+
+      speedY =
+        -Math.abs(
+          speedY
+        );
+
+    }
+
+
+    // Apply position
+
+    fish.style.left =
+      `${x}px`;
+
+    fish.style.top =
+      `${y}px`;
+
+
+    // Continue moving
+
+    requestAnimationFrame(
+      move
+    );
+
+  }
+
+
+  // Start movement
+
+  move();
+
 }
 
-function updateUI() {
-  scoreEl.textContent = score;
-  coinsEl.textContent = coins;
-  caughtEl.textContent = caught;
+
+// =========================
+// CATCH FISH
+// =========================
+
+gameArea.addEventListener(
+  'click',
+  function(event) {
+
+    // Check if clicked element
+    // is a fish
+
+    if (
+      !event.target.classList.contains(
+        'fish'
+      )
+    ) {
+
+      return;
+
+    }
+
+
+    // Add score
+
+    score +=
+      10;
+
+
+    // Add caught fish
+
+    fishCaught++;
+
+
+    // Update score
+
+    scoreDisplay.textContent =
+      score;
+
+
+    // Update fish caught
+
+    fishCaughtDisplay.textContent =
+      fishCaught;
+
+
+    // Remove fish
+
+    event.target.remove();
+
+  }
+);
+
+
+// =========================
+// TIMER
+// =========================
+
+function startTimer() {
+
+  timerInterval =
+    setInterval(
+      function() {
+
+        // Decrease time
+
+        timeLeft--;
+
+
+        // Update timer
+
+        timerDisplay.textContent =
+          timeLeft;
+
+
+        // Check if time is over
+
+        if (
+          timeLeft <= 0
+        ) {
+
+          endGame();
+
+        }
+
+      },
+      1000
+    );
+
+}
+
+
+// =========================
+// END GAME
+// =========================
+
+function endGame() {
+
+  // Stop game
+
+  gameRunning =
+    false;
+
+
+  // Stop creating fish
+
+  clearInterval(
+    fishInterval
+  );
+
+
+  // Stop timer
+
+  clearInterval(
+    timerInterval
+  );
+
+
+  // Show final score
+
+  finalScoreDisplay.textContent =
+    score;
+
+
+  // Show final fish count
+
+  finalFishDisplay.textContent =
+    fishCaught;
+
+
+  // Show Game Over screen
+
+  gameOverScreen.style.display =
+    'block';
+
 }
