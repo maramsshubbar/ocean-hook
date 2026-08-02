@@ -18,23 +18,18 @@ const HOOK_RADIUS       = 16;
 const FISH_RADIUS       = 34;
 
 /* =========================
-   ROD CALIBRATION  ⬅️ عدّل من هنا
 ========================= */
-const ROD_W       = 130;     // عرض الصورة
-const ROD_H       = 130;    // ارتفاع الصورة
-const ROD_TOP     = 100;     // بعدها عن أعلى الشاشة
+const ROD_W   = 130;
+const ROD_H   = 130;
+const ROD_TOP = 130;
+const ROD_PIVOT_X = 0.50;   
+const ROD_PIVOT_Y = 0.08;   
 
-const ROD_PIVOT_X = 0.50;   // نقطة الدوران (المقبض) - أفقي  0=يسار 1=يمين
-const ROD_PIVOT_Y = 0.08;   // نقطة الدوران (المقبض) - عمودي 0=أعلى 1=أسفل
-
-const ROD_TIP_X   = 0.50;   // طرف الصنارة (مخرج الخيط) - أفقي
-const ROD_TIP_Y   = 0.97;   // طرف الصنارة (مخرج الخيط) - عمودي
-
-const ROD_FLIP    = false;  // true لو الصورة مقلوبة يمين/يسار
-const ROD_OFFSET  = 0;      // درجة إضافية لو الصورة مايلة أصلاً
-
-const SHOW_ANCHOR = true;   // ⬅️ خلّها true للمعايرة، بعدين false
-
+const ROD_TIP_X   = 0.50;   
+const ROD_TIP_Y   = 0.97;   
+const ROD_FLIP    = false;  
+const ROD_OFFSET  = 0;      
+const SHOW_ANCHOR = false;
 /* =========================
    FISH SPRITE SHEETS
 ========================= */
@@ -61,9 +56,9 @@ let spawnTimer = null;
 let lastTime = 0;
 
 let areaW = 0, areaH = 0;
-let pivotX = 0, pivotY = 0;     // نقطة دوران الصنارة
-let anchorX = 0, anchorY = 0;   // طرف الصنارة (مخرج الخيط)
-let rodAngle = 0;               // بالراديان
+let pivotX = 0, pivotY = 0;    
+let anchorX = 0, anchorY = 0;  
+let rodAngle = 0;               
 
 let aimX = 0, aimY = 1;
 
@@ -98,7 +93,6 @@ const resultTitle       = document.querySelector('#result-title');
 const finalScoreDisplay = document.querySelector('#final-score');
 const finalFishDisplay  = document.querySelector('#final-fish');
 
-/* نقطة المعايرة */
 const anchorDot = document.createElement('div');
 anchorDot.id = 'anchor-dot';
 gameArea.appendChild(anchorDot);
@@ -506,9 +500,9 @@ function showPopup(text, kind) {
 }
 
 function render() {
-  scoreDisplay.textContent      = score;
+  scoreDisplay.textContent = score;
   fishCaughtDisplay.textContent = fishCaught;
-  livesDisplay.textContent      = lives > 0 ? '❤️'.repeat(lives) : '💀';
+  livesDisplay.textContent = lives > 0 ? '❤️'.repeat(lives) : '0';
 }
 
 function endGame(result) {
