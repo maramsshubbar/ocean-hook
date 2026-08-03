@@ -21,7 +21,7 @@ const FISH_RADIUS       = 34;
 ========================= */
 const ROD_W   = 130;
 const ROD_H   = 130;
-const ROD_TOP = 140;
+const ROD_TOP = 105;
 const ROD_PIVOT_X = 0.50;   
 const ROD_PIVOT_Y = 0.08;   
 
