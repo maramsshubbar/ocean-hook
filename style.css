@@ -1,708 +1,707 @@
-/* ========================= RESET ========================= */
+/* Reset */
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
+  }
 
 html,
 body {
-  width: 100%;
-  height: 100%;
+width: 100%;
+height: 100%;
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
-  overflow: hidden;
-  background: #062d47;
+font-family: Arial, Helvetica, sans-serif;
+overflow: hidden;
+background: #062d47;
 }
 
-/* ========================= START SCREEN ========================= */
+/* Start screen */
 .start-screen {
-  position: fixed;
-  inset: 0;
-  z-index: 300;
+position: fixed;
+inset: 0;
+z-index: 300;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+display: flex;
+align-items: center;
+justify-content: center;
 
-  padding: 24px;
+padding: 24px;
 
-  background-color: #0b3d5c;
-  background-image:
-    linear-gradient(
-      180deg,
-      rgba(3, 27, 46, 0.15),
-      rgba(2, 22, 38, 0.6)
-    ),
-    url("assets/images/startbg.jpg");
+background-color: #0b3d5c;
+background-image:
+linear-gradient(
+180deg,
+rgba(3, 27, 46, 0.15),
+rgba(2, 22, 38, 0.6)
+),
+url("assets/images/startbg.jpg");
 
-  background-size: cover;
-  background-position: center;
+background-size: cover;
+background-position: center;
 }
 
-/* صندوق البداية */
 .menu-content {
-  position: relative;
-  width: min(520px, 94vw);
+position: relative;
+width: min(520px, 94vw);
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 18px;
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 18px;
 
-  padding: 38px 42px;
+padding: 38px 42px;
 
-  background:
-    linear-gradient(
-      145deg,
-      rgba(8, 54, 84, 0.78),
-      rgba(4, 28, 50, 0.82)
-    );
+background:
+linear-gradient(
+145deg,
+rgba(8, 54, 84, 0.78),
+rgba(4, 28, 50, 0.82)
+);
 
-  border: 1px solid rgba(126, 219, 250, 0.3);
-  border-radius: 28px;
+border: 1px solid rgba(126, 219, 250, 0.3);
+border-radius: 28px;
 
-  box-shadow:
-    0 24px 55px rgba(0, 15, 30, 0.48),
-    inset 0 1px 0 rgba(255, 255, 255, 0.13);
+box-shadow:
+0 24px 55px rgba(0, 15, 30, 0.48),
+inset 0 1px 0 rgba(255, 255, 255, 0.13);
 
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+backdrop-filter: blur(10px);
+-webkit-backdrop-filter: blur(10px);
 
-  overflow: hidden;
+overflow: hidden;
 }
 
-/* الخط السماوي أعلى صندوق البداية */
+/* Top line */
 .menu-content::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 44px;
-  right: 44px;
-  height: 4px;
+content: "";
+position: absolute;
+top: 0;
+left: 44px;
+right: 44px;
+height: 4px;
 
-  background: linear-gradient(
-    90deg,
-    transparent,
-    #38d8ff 18%,
-    #5ee6ff 50%,
-    #38d8ff 82%,
-    transparent
-  );
+background: linear-gradient(
+90deg,
+transparent,
+#38d8ff 18%,
+#5ee6ff 50%,
+#38d8ff 82%,
+transparent
+);
 
-  border-radius: 0 0 8px 8px;
-  box-shadow: 0 0 12px rgba(56, 216, 255, 0.42);
+border-radius: 0 0 8px 8px;
+box-shadow: 0 0 12px rgba(56, 216, 255, 0.42);
 }
 
 .menu-content h1 {
-  color: #ffffff;
-  font-size: clamp(38px, 5vw, 56px);
-  font-weight: 900;
-  line-height: 1.05;
-  letter-spacing: -1.5px;
-  text-align: center;
+color: #ffffff;
+font-size: clamp(38px, 5vw, 56px);
+font-weight: 900;
+line-height: 1.05;
+letter-spacing: -1.5px;
+text-align: center;
 
-  text-shadow:
-    0 4px 12px rgba(0, 19, 35, 0.65),
-    0 0 25px rgba(64, 207, 255, 0.15);
+text-shadow:
+0 4px 12px rgba(0, 19, 35, 0.65),
+0 0 25px rgba(64, 207, 255, 0.15);
 }
 
 .menu-content p {
-  max-width: 400px;
+max-width: 400px;
 
-  color: rgba(218, 244, 255, 0.88);
-  font-size: 16px;
-  line-height: 1.6;
-  text-align: center;
+color: rgba(218, 244, 255, 0.88);
+font-size: 16px;
+line-height: 1.6;
+text-align: center;
 
-  text-shadow: 0 2px 5px rgba(0, 20, 38, 0.5);
+text-shadow: 0 2px 5px rgba(0, 20, 38, 0.5);
 }
 
-/* ========================= RULES ========================= */
+/* Game rules */
 .rules {
-  width: 100%;
+width: 100%;
 
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 10px;
 
-  list-style: none;
+list-style: none;
 }
 
 .rules li {
-  position: relative;
+position: relative;
 
-  min-height: 58px;
-  padding: 11px 12px 11px 16px;
+min-height: 58px;
+padding: 11px 12px 11px 16px;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 3px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+gap: 3px;
 
-  background: rgba(204, 240, 255, 0.07);
-  border: 1px solid rgba(177, 231, 251, 0.13);
-  border-radius: 13px;
+background: rgba(204, 240, 255, 0.07);
+border: 1px solid rgba(177, 231, 251, 0.13);
+border-radius: 13px;
 
-  color: rgba(221, 246, 255, 0.82);
-  font-size: 12px;
-  line-height: 1.25;
+color: rgba(221, 246, 255, 0.82);
+font-size: 12px;
+line-height: 1.25;
 
-  overflow: hidden;
+overflow: hidden;
 }
 
-/* الخط الملون داخل كل قاعدة */
+/* Rule colors */
 .rules li::before {
-  content: "";
-  position: absolute;
-  top: 10px;
-  bottom: 10px;
-  left: 0;
+content: "";
+position: absolute;
+top: 10px;
+bottom: 10px;
+left: 0;
 
-  width: 3px;
-  border-radius: 0 5px 5px 0;
+width: 3px;
+border-radius: 0 5px 5px 0;
 }
 
 .rules li:nth-child(1)::before {
-  background: #5ee58a;
+background: #5ee58a;
 }
 
 .rules li:nth-child(2)::before {
-  background: #ff6c7e;
+background: #ff6c7e;
 }
 
 .rules li:nth-child(3)::before {
-  background: #ff8ba0;
+background: #ff8ba0;
 }
 
 .rules li:nth-child(4)::before {
-  background: #ffd76a;
+background: #ffd76a;
 }
 
 .rule-title {
-  color: #ffffff;
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: 0.3px;
+color: #ffffff;
+font-size: 13px;
+font-weight: 800;
+letter-spacing: 0.3px;
 }
 
 .rule-value {
-  color: rgba(195, 233, 247, 0.72);
-  font-size: 11px;
-  font-weight: 600;
+color: rgba(195, 233, 247, 0.72);
+font-size: 11px;
+font-weight: 600;
 }
 
-/* ========================= BUTTONS ========================= */
+/* Buttons */
 button {
-  min-width: 190px;
-  padding: 14px 32px;
+min-width: 190px;
+padding: 14px 32px;
 
-  border: 0;
-  border-radius: 13px;
+border: 0;
+border-radius: 13px;
 
-  color: #06334d;
-  background: linear-gradient(180deg, #e8faff, #a9e9fa);
+color: #06334d;
+background: linear-gradient(180deg, #e8faff, #a9e9fa);
 
-  font-family: inherit;
-  font-size: 16px;
-  font-weight: 900;
-  letter-spacing: 0.5px;
+font-family: inherit;
+font-size: 16px;
+font-weight: 900;
+letter-spacing: 0.5px;
 
-  cursor: pointer;
+cursor: pointer;
 
-  box-shadow:
-    0 8px 18px rgba(0, 19, 34, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+box-shadow:
+0 8px 18px rgba(0, 19, 34, 0.3),
+inset 0 1px 0 rgba(255, 255, 255, 0.9);
 
-  transition:
-    transform 0.18s ease,
-    box-shadow 0.18s ease,
-    filter 0.18s ease;
+transition:
+transform 0.18s ease,
+box-shadow 0.18s ease,
+filter 0.18s ease;
 }
 
 button:hover {
-  transform: translateY(-2px);
-  filter: brightness(1.05);
+transform: translateY(-2px);
+filter: brightness(1.05);
 
-  box-shadow:
-    0 12px 24px rgba(0, 19, 34, 0.38),
-    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+box-shadow:
+0 12px 24px rgba(0, 19, 34, 0.38),
+inset 0 1px 0 rgba(255, 255, 255, 0.95);
 }
 
 button:active {
-  transform: translateY(0);
+transform: translateY(0);
 }
 
-/* ========================= GAME SCREEN ========================= */
+/* Game screen */
 .game-screen {
-  display: none;
-  position: fixed;
-  inset: 0;
+display: none;
+position: fixed;
+inset: 0;
 
-  background-color: #0b4a6f;
-  background-image: url("assets/images/game_bg_2_hd.jpg");
-  background-size: cover;
-  background-position: center;
+background-color: #0b4a6f;
+background-image: url("assets/images/game_bg_2_hd.jpg");
+background-size: cover;
+background-position: center;
 }
 
-/* ========================= HUD ========================= */
+/* Game info */
 .game-info {
-  position: absolute;
-  top: 18px;
-  left: 50%;
-  z-index: 50;
+position: absolute;
+top: 18px;
+left: 50%;
+z-index: 50;
 
-  display: flex;
-  align-items: center;
-  gap: 14px;
+display: flex;
+align-items: center;
+gap: 14px;
 
-  transform: translateX(-50%);
+transform: translateX(-50%);
 }
 
-/* الكارد */
 .info-box {
-  position: relative;
+position: relative;
 
-  width: 180px;
-  height: 94px;
-  padding: 14px 18px;
+width: 180px;
+height: 94px;
+padding: 14px 18px;
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
 
-  background:
-    linear-gradient(
-      155deg,
-      rgba(17, 72, 108, 0.68),
-      rgba(4, 32, 60, 0.76)
-    );
+background:
+linear-gradient(
+155deg,
+rgba(17, 72, 108, 0.68),
+rgba(4, 32, 60, 0.76)
+);
 
-  border: 1px solid rgba(58, 192, 236, 0.32);
-  border-radius: 17px;
+border: 1px solid rgba(58, 192, 236, 0.32);
+border-radius: 17px;
 
-  box-shadow:
-    0 9px 22px rgba(0, 18, 35, 0.27),
-    inset 0 1px 0 rgba(255, 255, 255, 0.11);
+box-shadow:
+0 9px 22px rgba(0, 18, 35, 0.27),
+inset 0 1px 0 rgba(255, 255, 255, 0.11);
 
-  backdrop-filter: blur(7px);
-  -webkit-backdrop-filter: blur(7px);
+backdrop-filter: blur(7px);
+-webkit-backdrop-filter: blur(7px);
 
-  text-align: center;
-  overflow: hidden;
+text-align: center;
+overflow: hidden;
 
-  transition:
-    transform 0.18s ease,
-    border-color 0.18s ease,
-    background 0.18s ease;
+transition:
+transform 0.18s ease,
+border-color 0.18s ease,
+background 0.18s ease;
 }
 
-/* الخط العلوي */
+/* Top line */
 .info-box::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 18px;
-  right: 18px;
+content: "";
+position: absolute;
+top: 0;
+left: 18px;
+right: 18px;
 
-  height: 3px;
+height: 3px;
 
-  background: linear-gradient(
-    90deg,
-    transparent,
-    #35d7ff 18%,
-    #55e3ff 50%,
-    #35d7ff 82%,
-    transparent
-  );
+background: linear-gradient(
+90deg,
+transparent,
+#35d7ff 18%,
+#55e3ff 50%,
+#35d7ff 82%,
+transparent
+);
 
-  border-radius: 0 0 5px 5px;
+border-radius: 0 0 5px 5px;
 
-  box-shadow: 0 0 8px rgba(47, 214, 255, 0.38);
+box-shadow: 0 0 8px rgba(47, 214, 255, 0.38);
 }
 
-/* لمعة خفيفة */
+/* Light effect */
 .info-box::after {
-  content: "";
-  position: absolute;
-  inset: 0;
+content: "";
+position: absolute;
+inset: 0;
 
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.045),
-    transparent 55%
-  );
+background: linear-gradient(
+180deg,
+rgba(255, 255, 255, 0.045),
+transparent 55%
+);
 
-  pointer-events: none;
+pointer-events: none;
 }
 
-/* العنوان */
+/* Info title */
 .info-box span {
-  position: relative;
-  z-index: 1;
+position: relative;
+z-index: 1;
 
-  display: block;
-  margin-bottom: 8px;
+display: block;
+margin-bottom: 8px;
 
-  color: rgba(171, 226, 246, 0.88);
-  font-size: 12px;
-  font-weight: 800;
-  line-height: 1;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
+color: rgba(171, 226, 246, 0.88);
+font-size: 12px;
+font-weight: 800;
+line-height: 1;
+letter-spacing: 1.5px;
+text-transform: uppercase;
 
-  text-shadow: 0 2px 4px rgba(0, 20, 38, 0.4);
+text-shadow: 0 2px 4px rgba(0, 20, 38, 0.4);
 }
 
-/* القيمة */
+/* Info value */
 .info-box strong {
-  position: relative;
-  z-index: 1;
+position: relative;
+z-index: 1;
 
-  display: block;
+display: block;
 
-  color: #ffffff;
-  font-size: 31px;
-  font-weight: 900;
-  line-height: 1;
+color: #ffffff;
+font-size: 31px;
+font-weight: 900;
+line-height: 1;
 
-  text-shadow: 0 3px 7px rgba(0, 13, 27, 0.5);
+text-shadow: 0 3px 7px rgba(0, 13, 27, 0.5);
 }
 
-/* ألوان القيم */
+/* Value colors */
 .score-box strong {
-  color: #51d8ff;
+color: #51d8ff;
 }
 
 .caught-box strong {
-  color: #7be6ff;
+color: #7be6ff;
 }
 
-/* القلوب */
+/* Lives */
 .lives-box strong {
-  color: #ff6078;
-  font-size: 25px;
-  letter-spacing: 5px;
-  white-space: nowrap;
+color: #ff6078;
+font-size: 25px;
+letter-spacing: 5px;
+white-space: nowrap;
 
-  text-shadow:
-    0 2px 0 rgba(115, 18, 38, 0.85),
-    0 4px 7px rgba(0, 0, 0, 0.35);
+text-shadow:
+0 2px 0 rgba(115, 18, 38, 0.85),
+0 4px 7px rgba(0, 0, 0, 0.35);
 }
 
-/* حركة خفيفة */
+/* Hover effect */
 .info-box:hover {
-  transform: translateY(-2px);
+transform: translateY(-2px);
 
-  background:
-    linear-gradient(
-      155deg,
-      rgba(20, 82, 121, 0.73),
-      rgba(5, 38, 69, 0.8)
-    );
+background:
+linear-gradient(
+155deg,
+rgba(20, 82, 121, 0.73),
+rgba(5, 38, 69, 0.8)
+);
 
-  border-color: rgba(79, 216, 255, 0.55);
+border-color: rgba(79, 216, 255, 0.55);
 }
 
-/* ========================= GAME AREA ========================= */
+/* Game area */
 .game-area {
-  position: absolute;
-  inset: 0;
+position: absolute;
+inset: 0;
 
-  overflow: hidden;
-  cursor: crosshair;
+overflow: hidden;
+cursor: crosshair;
 }
 
-/* العناصر لا تمنع ضغط الماوس على منطقة اللعب */
+/* Mouse clicks go to the game area */
 .game-area > * {
-  pointer-events: none;
+pointer-events: none;
 }
 
-/* ========================= ROD ========================= */
+/* Fishing rod */
 #rod {
-  position: absolute;
-  z-index: 30;
-  will-change: transform;
+position: absolute;
+z-index: 30;
+will-change: transform;
 }
 
 #rod-img {
-  width: 100%;
-  height: 100%;
+width: 100%;
+height: 100%;
 
-  display: block;
-  object-fit: contain;
+display: block;
+object-fit: contain;
 
-  user-select: none;
-  -webkit-user-drag: none;
+user-select: none;
+-webkit-user-drag: none;
 }
 
 #rod-fallback {
-  display: none;
-  font-size: 64px;
-  line-height: 1;
-  text-align: center;
+display: none;
+font-size: 64px;
+line-height: 1;
+text-align: center;
 }
 
-/* نقطة المعايرة */
+/* Anchor point */
 #anchor-dot {
-  position: absolute;
-  z-index: 99;
+position: absolute;
+z-index: 99;
 
-  width: 10px;
-  height: 10px;
-  margin: -5px 0 0 -5px;
+width: 10px;
+height: 10px;
+margin: -5px 0 0 -5px;
 
-  background: #ff2d2d;
-  border-radius: 50%;
+background: #ff2d2d;
+border-radius: 50%;
 
-  box-shadow: 0 0 8px #ff2d2d;
+box-shadow: 0 0 8px #ff2d2d;
 
-  display: none;
+display: none;
 }
 
-/* ========================= LINE LAYER ========================= */
+/* Fishing lines */
 #line-layer {
-  position: absolute;
-  inset: 0;
-  z-index: 28;
+position: absolute;
+inset: 0;
+z-index: 28;
 
-  width: 100%;
-  height: 100%;
+width: 100%;
+height: 100%;
 }
 
 #fish-line {
-  stroke: rgba(255, 255, 255, 0.9);
-  stroke-width: 2;
-  visibility: hidden;
+stroke: rgba(255, 255, 255, 0.9);
+stroke-width: 2;
+visibility: hidden;
 }
 
 #aim-line {
-  stroke: rgba(255, 255, 255, 0.55);
-  stroke-width: 3;
-  stroke-dasharray: 8 8;
-  stroke-linecap: round;
-  visibility: hidden;
+stroke: rgba(255, 255, 255, 0.55);
+stroke-width: 3;
+stroke-dasharray: 8 8;
+stroke-linecap: round;
+visibility: hidden;
 }
 
-/* ========================= HOOK ========================= */
+/* Hook */
 #hook {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 32;
+position: absolute;
+top: 0;
+left: 0;
+z-index: 32;
 
-  font-size: 30px;
-  line-height: 1;
+font-size: 30px;
+line-height: 1;
 
-  visibility: hidden;
+visibility: hidden;
 
-  filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.6));
+filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.6));
 }
 
-/* ========================= FISH ========================= */
+/* Fish */
 .fish {
-  position: absolute;
-  z-index: 20;
+position: absolute;
+z-index: 20;
 
-  width: 100px;
-  height: 100px;
+width: 100px;
+height: 100px;
 }
 
 .fish.bad {
-  filter:
-    drop-shadow(0 0 8px #ff2d2d)
-    hue-rotate(-20deg)
-    saturate(1.6);
+filter:
+drop-shadow(0 0 8px #ff2d2d)
+hue-rotate(-20deg)
+saturate(1.6);
 
-  animation: badPulse 1s ease-in-out infinite;
+animation: badPulse 1s ease-in-out infinite;
 }
 
 @keyframes badPulse {
-  0%,
-  100% {
-    filter:
-      drop-shadow(0 0 6px #ff2d2d)
-      saturate(1.5);
-  }
-
-  50% {
-    filter:
-      drop-shadow(0 0 16px #ff2d2d)
-      saturate(2);
-  }
+0%,
+100% {
+filter:
+drop-shadow(0 0 6px #ff2d2d)
+saturate(1.5);
 }
 
-/* ========================= POPUP FEEDBACK ========================= */
+50% {
+filter:
+drop-shadow(0 0 16px #ff2d2d)
+saturate(2);
+}
+}
+
+/* Score popup */
 .popup {
-  position: absolute;
-  z-index: 60;
+position: absolute;
+z-index: 60;
 
-  font-size: 28px;
-  font-weight: 900;
+font-size: 28px;
+font-weight: 900;
 
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.75);
+text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.75);
 
-  transform: translate(-50%, -50%);
-  animation: floatUp 0.9s ease-out forwards;
+transform: translate(-50%, -50%);
+animation: floatUp 0.9s ease-out forwards;
 }
 
 .popup.good {
-  color: #6cff7a;
+color: #6cff7a;
 }
 
 .popup.bad {
-  color: #ff6078;
+color: #ff6078;
 }
 
 @keyframes floatUp {
-  0% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(0.9);
-  }
-
-  100% {
-    opacity: 0;
-    transform: translate(-50%, -160%) scale(1.25);
-  }
+0% {
+opacity: 1;
+transform: translate(-50%, -50%) scale(0.9);
 }
 
-/* ========================= GAME OVER ========================= */
+100% {
+opacity: 0;
+transform: translate(-50%, -160%) scale(1.25);
+}
+}
+
+/* Game over screen */
 .game-over {
-  display: none;
+display: none;
 
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: 200;
+position: absolute;
+top: 50%;
+left: 50%;
+z-index: 200;
 
-  width: min(390px, calc(100% - 32px));
-  padding: 38px 34px;
+width: min(390px, calc(100% - 32px));
+padding: 38px 34px;
 
-  background:
-    linear-gradient(
-      145deg,
-      rgba(9, 57, 87, 0.95),
-      rgba(4, 29, 52, 0.96)
-    );
+background:
+linear-gradient(
+145deg,
+rgba(9, 57, 87, 0.95),
+rgba(4, 29, 52, 0.96)
+);
 
-  border: 1px solid rgba(83, 207, 246, 0.32);
-  border-radius: 24px;
+border: 1px solid rgba(83, 207, 246, 0.32);
+border-radius: 24px;
 
-  box-shadow:
-    0 24px 55px rgba(0, 15, 30, 0.55),
-    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+box-shadow:
+0 24px 55px rgba(0, 15, 30, 0.55),
+inset 0 1px 0 rgba(255, 255, 255, 0.12);
 
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+backdrop-filter: blur(12px);
+-webkit-backdrop-filter: blur(12px);
 
-  text-align: center;
+text-align: center;
 
-  transform: translate(-50%, -50%);
+transform: translate(-50%, -50%);
 }
 
 .game-over h2 {
-  margin-bottom: 20px;
+margin-bottom: 20px;
 
-  color: #ffffff;
-  font-size: 38px;
-  font-weight: 900;
+color: #ffffff;
+font-size: 38px;
+font-weight: 900;
 
-  text-shadow: 0 4px 10px rgba(0, 15, 30, 0.5);
+text-shadow: 0 4px 10px rgba(0, 15, 30, 0.5);
 }
 
 .game-over p {
-  margin: 10px 0;
+margin: 10px 0;
 
-  color: rgba(205, 239, 251, 0.78);
-  font-size: 15px;
-  font-weight: 700;
-  letter-spacing: 0.8px;
-  text-transform: uppercase;
+color: rgba(205, 239, 251, 0.78);
+font-size: 15px;
+font-weight: 700;
+letter-spacing: 0.8px;
+text-transform: uppercase;
 }
 
 #final-score {
-  display: block;
-  margin: 12px;
+display: block;
+margin: 12px;
 
-  color: #5edfff;
-  font-size: 62px;
-  font-weight: 900;
+color: #5edfff;
+font-size: 62px;
+font-weight: 900;
 
-  text-shadow: 0 4px 12px rgba(0, 13, 27, 0.45);
+text-shadow: 0 4px 12px rgba(0, 13, 27, 0.45);
 }
 
 #final-fish {
-  color: #ffffff;
-  font-weight: 900;
+color: #ffffff;
+font-weight: 900;
 }
 
 #restart-btn {
-  width: 100%;
-  margin-top: 20px;
+width: 100%;
+margin-top: 20px;
 }
 
-/* ========================= RESPONSIVE ========================= */
+/* Mobile layout */
 @media (max-width: 700px) {
-  .menu-content {
-    padding: 30px 22px;
-    border-radius: 22px;
-  }
+.menu-content {
+padding: 30px 22px;
+border-radius: 22px;
+}
 
-  .rules {
-    grid-template-columns: 1fr;
-  }
+.rules {
+grid-template-columns: 1fr;
+}
 
-  .game-info {
-    top: 10px;
-    width: calc(100% - 18px);
-    gap: 7px;
-  }
+.game-info {
+top: 10px;
+width: calc(100% - 18px);
+gap: 7px;
+}
 
-  .info-box {
-    flex: 1;
-    width: auto;
-    min-width: 0;
-    height: 78px;
-    padding: 10px 6px;
-    border-radius: 14px;
-  }
+.info-box {
+flex: 1;
+width: auto;
+min-width: 0;
+height: 78px;
+padding: 10px 6px;
+border-radius: 14px;
+}
 
-  .info-box::before {
-    left: 9px;
-    right: 9px;
-  }
+.info-box::before {
+left: 9px;
+right: 9px;
+}
 
-  .info-box span {
-    margin-bottom: 6px;
-    font-size: 9px;
-    letter-spacing: 0.7px;
-  }
+.info-box span {
+margin-bottom: 6px;
+font-size: 9px;
+letter-spacing: 0.7px;
+}
 
-  .info-box strong {
-    font-size: 25px;
-  }
+.info-box strong {
+font-size: 25px;
+}
 
-  .lives-box strong {
-    font-size: 18px;
-    letter-spacing: 2px;
-  }
+.lives-box strong {
+font-size: 18px;
+letter-spacing: 2px;
+}
 }
 
 @media (max-height: 650px) {
-  .menu-content {
-    gap: 12px;
-    padding-top: 24px;
-    padding-bottom: 24px;
-  }
+.menu-content {
+gap: 12px;
+padding-top: 24px;
+padding-bottom: 24px;
+}
 
-  .menu-content h1 {
-    font-size: 38px;
-  }
+.menu-content h1 {
+font-size: 38px;
+}
 
-  .rules li {
-    min-height: 50px;
-  }
+.rules li {
+min-height: 50px;
+}
 }
