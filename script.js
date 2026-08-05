@@ -1,6 +1,4 @@
-/* =========================
-   GAME CONSTANTS
-========================= */
+//GAME CONSTANTS
 const MAX_LIVES         = 3;
 const WINNING_SCORE     = 15;
 
@@ -17,8 +15,6 @@ const MAX_AIM_ANGLE     = 70;
 const HOOK_RADIUS       = 16;
 const FISH_RADIUS       = 34;
 
-/* =========================
-========================= */
 const ROD_W   = 130;
 const ROD_H   = 130;
 const ROD_TOP = 105;
