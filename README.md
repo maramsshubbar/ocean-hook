@@ -23,7 +23,7 @@ I was inspired by classic arcade fishing mini-games and claw-style games like *G
 
 ## Getting Started
 
-### ▶️ [Play the Game Here](https://maramsshubbar.github.io/fishing-adventure-game/)
+### ▶️ [Play the Game Here](https://maramsshubbar.github.io/ocean-hook/)
 
 ### 📋 [Game Plan Document](GAME_PLAN.md)
 
