@@ -145,7 +145,6 @@ function updateBounds() {
   updateRodAngle(rodAngle);
 }
 
-/* يحسب مكان طرف الصنارة بعد الدوران */
 function updateRodAngle(angle) {
   rodAngle = angle;
 
@@ -518,3 +517,4 @@ function endGame(result) {
   finalFishDisplay.textContent  = fishCaught;
   gameOverScreen.style.display = 'block';
 }
+ 
