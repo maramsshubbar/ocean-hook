@@ -510,9 +510,14 @@ width: 100px;
 height: 100px;
 }
 
+
+/* shadow */
+/* changes the fish's color to make it look more red. */
+/* It makes the color brighter. */
+/* It makes the red glow move in and out continuously. */
 .fish.bad {
 filter:
-drop-shadow(0 0 8px #ff2d2d)
+drop-shadow(0 0 8px #ff2d2d) 
 hue-rotate(-20deg)
 saturate(1.6);
 
