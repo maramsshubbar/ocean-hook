@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,71 +7,67 @@
   <link rel="stylesheet" href="style.css">
   <script defer src="script.js"></script>
 </head>
-
 <body>
 
-<!-- Start menu -->
+  <!-- Start menu -->
+  <div id="start-screen" class="start-screen">
+    <div class="menu-content">
+      <h1>Ocean Hook</h1>
+      <p>Aim with your mouse, then click to launch the hook!</p>
 
-<div id="start-screen" class="start-screen">
-  <div class="menu-content">
-    <h1>Ocean Hook</h1>
-    <p>Aim with your mouse, then click to launch the hook!</p>
+      <!-- Game rules -->
+      <ul class="rules">
+        <li>Good creatures → +1 point</li>
+        <li>Bad creatures → −1 life</li>
+        <li>Start with 3 lives</li>
+        <li>Reach 15 points to win</li>
+      </ul>
 
-
-    <!-- Game rules -->
-    <ul class="rules">
-      <li>Good creatures → +1 point</li>
-      <li>Bad creatures → −1 life</li>
-      <li>Start with 3 lives</li>
-      <li>Reach 15 points to win</li>
-    </ul>
-
-    <button id="start-btn">Start Game</button>
+      <button id="start-btn">Start Game</button>
+    </div>
   </div>
-</div>
 
-<!-- Game screen -->
-<div id="game-screen" class="game-screen">
+  <!-- Game screen -->
+  <div id="game-screen" class="game-screen">
 
-  <!-- Score and lives -->
-  <div class="game-info">
-    <div class="info-box">
-      <span>Score</span>
-      <strong id="score">0</strong>
+    <!-- Score and lives -->
+    <div class="game-info">
+      <div class="info-box">
+        <span>Score</span>
+        <strong id="score">0</strong>
+      </div>
+
+      <div class="info-box">
+        <span>Creatures Caught</span>
+        <strong id="fish-caught">0</strong>
+      </div>
+
+      <div class="info-box">
+        <span>Lives</span>
+        <strong id="lives">❤️❤️❤️</strong>
+      </div>
     </div>
 
-  <div class="info-box">
-    <span>Creatures Caught</span>
-    <strong id="fish-caught">0</strong>
-  </div>
-  <div class="info-box">
-  <span>Lives</span>
-  <strong id="lives">❤️❤️❤️</strong>
-</div>
+    <!-- Game area -->
+    <div id="game-area" class="game-area">
 
+      <!-- Fishing rod -->
+      <div id="rod">
+        <img id="rod-img" src="assets/images/rod.png" alt="Fishing rod">
+        <span id="rod-fallback">🎣</span>
+      </div>
 
-  </div>
+      <!-- Lines for aiming and fishing -->
+      <svg id="line-layer">
+        <line id="aim-line" x1="0" y1="0" x2="0" y2="0"></line>
+        <line id="fish-line" x1="0" y1="0" x2="0" y2="0"></line>
+      </svg>
 
-  <!-- Game area -->
-  <div id="game-area" class="game-area">
-
-    <!-- Fishing rod -->
-    <div id="rod">
-      <img id="rod-img" src="assets/images/rod.png" alt="">
-      <span id="rod-fallback">🎣</span>
+      <!-- Hook -->
+      <div id="hook">🪝</div>
     </div>
 
-    <!-- Lines for aiming and fishing -->
-    <svg id="line-layer">
-      <line id="aim-line" x1="0" y1="0" x2="0" y2="0"></line>
-      <line id="fish-line" x1="0" y1="0" x2="0" y2="0"></line>
-    </svg>
-
-    <!-- Hook -->
-    <div id="hook">🪝</div>
-  </div>
-
-<!-- Game result -->
+    <!-- Game result -->
     <div id="game-over" class="game-over">
       <h2 id="result-title">Game Over!</h2>
       <p>Your Score</p>
@@ -82,7 +76,6 @@
       <button id="restart-btn">Play Again</button>
     </div>
   </div>
-
 
 </body>
 </html>

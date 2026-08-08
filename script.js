@@ -96,6 +96,8 @@ gameArea.appendChild(anchorDot);
 /* =========================
    PRELOAD
 ========================= */
+
+/*Preloads all fish images before the game starts. If an image fails to load, it uses an emoji as a fallback.*/
 function preloadFishImages() {
   fishImages.forEach(function (cfg) {
     const img = new Image();
@@ -124,6 +126,8 @@ window.addEventListener('resize', updateBounds);
 /* =========================
    BOUNDS + ROD PLACEMENT
 ========================= */
+
+/*Updates the size and position of the game elements when the window is resized.*/
 function updateBounds() {
   areaW = gameArea.clientWidth;
   areaH = gameArea.clientHeight;
@@ -144,6 +148,8 @@ function updateBounds() {
 
   updateRodAngle(rodAngle);
 }
+
+/*Rotates the fishing rod and calculates the correct position of the rod tip.*/
 
 function updateRodAngle(angle) {
   rodAngle = angle;
@@ -169,6 +175,7 @@ function updateRodAngle(angle) {
 /* =========================
    START
 ========================= */
+/*Initializes the game, resets all variables, and starts the game loop and fish spawning.*/
 function startGame() {
   score = 0;
   fishCaught = 0;
@@ -205,6 +212,7 @@ function startGame() {
 /* =========================
    LOOP
 ========================= */
+/*The main game loop. It updates the fish, updates the hook, draws the aim line, and repeats every frame.*/
 function gameLoop(t) {
   if (!gameRunning) return;
 
@@ -222,6 +230,7 @@ function gameLoop(t) {
 /* =========================
    FISH
 ========================= */
+/*Creates a new fish with a random position, direction, speed, and type (good or bad).*/
 function spawnFish() {
   if (!gameRunning || fishes.length >= MAX_FISH) return;
 
@@ -254,6 +263,7 @@ function spawnFish() {
   positionFish(fish);
 }
 
+/*Updates the movement of all fish and removes fish that leave the screen.*/
 function updateFishes(dt) {
   for (let i = fishes.length - 1; i >= 0; i--) {
     const fish = fishes[i];
@@ -368,6 +378,9 @@ function drawAim() {
 /* =========================
    CAST
 ========================= */
+
+
+/* Launches the hook when the player clicks.*/
 function handleCast() {
   if (!gameRunning || hookState !== 'idle') return;
 
@@ -383,6 +396,7 @@ function handleCast() {
   fishLineEl.style.visibility = 'visible';
 }
 
+/*Updates the hook movement and checks for fish collisions.*/
 function updateHook(dt) {
   if (hookState === 'idle') return;
 
@@ -416,7 +430,7 @@ function updateHook(dt) {
 
   drawHook();
 }
-
+/*- Draws the hook and the fishing line.*/
 function drawHook() {
   hookEl.style.transform =
     'translate(' + hookX + 'px,' + hookY + 'px) translate(-50%,-50%)';
@@ -493,12 +507,15 @@ function showPopup(text, kind) {
   gameArea.appendChild(el);
   setTimeout(() => el.remove(), 900);
 }
+/*Updates the user interface, including the score, fish count, and lives.*/
 
 function render() {
   scoreDisplay.textContent = score;
   fishCaughtDisplay.textContent = fishCaught;
   livesDisplay.textContent = lives > 0 ? '❤️'.repeat(lives) : '0';
 }
+
+/*Stops the game, clears all fish, and displays the win or game over screen.*/
 
 function endGame(result) {
   gameRunning = false;
