@@ -318,7 +318,7 @@ function drawFish(fish) {
   ctx.clearRect(0, 0, FISH_SIZE, FISH_SIZE);
   ctx.save();
 
-  if (fish.vx > 0) {
+    if (fish.vx < 0) {
     ctx.translate(FISH_SIZE, 0);
     ctx.scale(-1, 1);
   }
